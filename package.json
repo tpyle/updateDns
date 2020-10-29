@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/tpyle/updateDns#readme",
   "dependencies": {
+    "aws-sdk": "^2.781.0",
+    "config": "^3.3.2",
     "public-ip": "^4.0.2"
   }
 }

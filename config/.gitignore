@@ -1,0 +1,3 @@
+# Ignore the used configs
+development.json
+production.json
