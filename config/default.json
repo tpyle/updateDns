@@ -1,0 +1,11 @@
+{
+    "dns": {
+        "fqdn": "example.com",
+        "ttl": 300
+    },
+    "ip": "4",
+    "aws": {
+        "accessKeyID": "<access key here>",
+        "secret": "<secret here>"
+    }
+}
