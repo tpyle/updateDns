@@ -6,6 +6,6 @@
     "ip": "4",
     "aws": {
         "accessKeyID": "<access key here>",
-        "secret": "<secret here>"
+        "secretAccessKey": "<secret here>"
     }
 }

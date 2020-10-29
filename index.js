@@ -5,7 +5,7 @@ const config = require('config');
 const publicIp = require('public-ip');
 
 const route53 = new AWS.Route53({
-    accessKeyId: config.aws.accessKeyId,
+    accessKeyId: config.aws.accessKeyID,
     secretAccessKey: config.aws.secretAccessKey
 });
 
@@ -29,7 +29,36 @@ function lookupCurrentIp() {
 
 
 function setIp(ip) {
-    throw `NOT YET IMPLEMENTED`;
+    return new Promise((resolve, reject)=>{
+        const params = {
+            ChangeBatch: {
+                Changes: [
+                    {
+                        Action: 'UPSERT',
+                        ResourceRecordSet: {
+                            Name: config.dns.fqdn,
+                            Type: config.ip == '4' ? 'A' : 'AAAA',
+                            TTL: config.dns.ttl,
+                            ResourceRecords: [
+                                {
+                                    Value: ip
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            HostedZoneId: config.aws.hostedZoneID
+        };
+        //console.log(params);
+        route53.changeResourceRecordSets(params, (err, data)=>{
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(data);
+            }
+        });
+    });
 }
 
 
@@ -39,7 +68,8 @@ async function main() {
 
     if (ip != currentDNSIp) {
         console.log(`FQDN '${config.dns.fqdn}' currently resolves to '${currentDNSIp}'. Updating to '${ip}'`);
-        setIp(ip);
+        const data = await setIp(ip);
+        console.log("Change issues. Currently pending...");
     } else {
         console.log(`Currently FQDN '${config.dns.fqdn}' has the correct ip of '${ip}'. Finishing.`);
     }
