@@ -1,0 +1,22 @@
+{
+  "name": "updatedns",
+  "version": "1.0.0",
+  "description": "A simple project to periodically run and find the public ip address and then update route53 with the new ip",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpyle/updateDns.git"
+  },
+  "author": "Thomas Pyle",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/tpyle/updateDns/issues"
+  },
+  "homepage": "https://github.com/tpyle/updateDns#readme",
+  "dependencies": {
+    "public-ip": "^4.0.2"
+  }
+}

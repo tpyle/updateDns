@@ -1,0 +1,5 @@
+# Vim Swap files
+*.swp
+
+# Node modules folder
+node_modules
